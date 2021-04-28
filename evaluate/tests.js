@@ -163,7 +163,6 @@ export const tests = (addEvaluator, data, separator) => [
 		resource: () => '/matches/' + data.newMatchId1,
 		checkResponse: (statusCode, body, el) => {
 			return ev.status200(statusCode, el)
-				&& ev.objectHasId(body, el)
 				&& ev.objectHasProp(body, 'winnerId', el)
 				&& ev.objectHasProp(body, 'loserId', el)
 		}
