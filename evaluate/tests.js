@@ -192,7 +192,11 @@ export const tests = (addEvaluator, data, separator) => [
 			data.matches.forEach(m => {
 				if( m.winnerId == winnerId ) winnerCount++;
 			})
-			console.log(`GET /matchWinners id=${winnerId}, count=${winnerCount}`);
+			if( body && body.length != winnerCount) {
+				console.log(`GET /matchWinners id=${winnerId}, count=${winnerCount}`);
+				console.log(`GET /matchWinners previous matches =`, data.matches);
+				console.log(`GET /matchWinners server response =`, body);
+			}
 			return ev.status200(statusCode, el)
 				&& ev.isArray(body, el)
 				&& ev.arrayLength(winnerCount, body, el)
