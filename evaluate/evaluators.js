@@ -16,7 +16,9 @@ export const ev = {
 	},
 	arrayLength: (len, body, element) => {
 		if( Array.isArray(body) && body.length == len ) return true;
-		element.innerHTML = `Does not respond with an array with ${len} elements.`
+		if( !Array.isArray(body) )
+			element.innerHTML = `Responds with something that is not an array.`
+		element.innerHTML = `Responds with an array with length ${body.len} (should be ${len}).`
 		return false
 	},
 	arrayHasData: (body, element) => {
@@ -46,12 +48,6 @@ export const ev = {
 	},
 	hasWinValue: (wins, hamsterArray, element) => ev.hasValue(wins, 'wins', hamsterArray, element, 'The hamster with the most wins is not in the array.'),
 	hasLoseValue: (defeats, hamsterArray, element) => ev.hasValue(defeats, 'defeats', hamsterArray, element, 'The hamster with the most defeats is not in the array.'),
-	// hasLoseValue: (defeats, hamsterArray, element) => {
-	// 	if( hamsterArray.some(h => h.defeats == defeats) )
-	// 		return true
-	// 	element.innerHTML = 'The hamster with the most losses is not in the array.'
-	// 	return false
-	// },
 
 	objectHasId: (object, element) => {
 		if( object && object.id )

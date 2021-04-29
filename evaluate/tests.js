@@ -216,6 +216,9 @@ export const tests = (addEvaluator, data, separator) => [
 		resource: () => '/winners',
 		checkResponse: (statusCode, body, el) => {
 			const maxWins = data.hamsters ? data.hamsters.reduce((acc, cur) => Math.max(cur.wins, acc), 0) : 0;
+			if( isNaN(+maxWins) ) {
+				console.log('You have an error in the database. There is (most likely) at least one (hamster) document that does not have a value for "wins". Clean up the database and try again.');
+			}
 			return ev.status200(statusCode, el)
 				&& ev.isArray(body, el)
 				&& ev.arrayLength(5, body, el)
