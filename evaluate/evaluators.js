@@ -19,7 +19,7 @@ export const ev = {
 		if( !Array.isArray(body) )
 			element.innerHTML = `Responds with something that is not an array.`
 		else
-			element.innerHTML = `Responds with an array with length ${body.len} (should be ${len}).`
+			element.innerHTML = `Responds with an array with length ${body.length} (should be ${len}).`
 		return false
 	},
 	arrayHasData: (body, element) => {
